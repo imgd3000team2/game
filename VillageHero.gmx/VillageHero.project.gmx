@@ -8,6 +8,7 @@
   <sprites name="sprites">
     <sprite>sprites\spr_Hero_placeholder</sprite>
     <sprite>sprites\spr_wall_terrible</sprite>
+    <sprite>sprites\spr_enemy</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\back_orange</background>
@@ -15,6 +16,7 @@
   <paths name="paths"/>
   <objects name="objects">
     <object>objects\obj_hero</object>
+    <object>objects\obj_enemy</object>
     <object>objects\obj_wall</object>
   </objects>
   <rooms name="rooms">

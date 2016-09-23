@@ -9,9 +9,11 @@
     <sprite>sprites\spr_Hero_placeholder</sprite>
     <sprite>sprites\spr_wall_terrible</sprite>
     <sprite>sprites\spr_enemy</sprite>
+    <sprite>sprites\sprite3</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\back_orange</background>
+    <background>background\back_night_rural</background>
   </backgrounds>
   <paths name="paths"/>
   <objects name="objects">

@@ -9,7 +9,7 @@
     <sprite>sprites\spr_Hero_placeholder</sprite>
     <sprite>sprites\spr_wall_terrible</sprite>
     <sprite>sprites\spr_enemy</sprite>
-    <sprite>sprites\sprite3</sprite>
+    <sprite>sprites\spr_villagehero_ninja</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\back_orange</background>

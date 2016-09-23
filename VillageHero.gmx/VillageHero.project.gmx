@@ -10,6 +10,8 @@
     <sprite>sprites\spr_wall_terrible</sprite>
     <sprite>sprites\spr_enemy</sprite>
     <sprite>sprites\spr_villagehero_ninja</sprite>
+    <sprite>sprites\spr_villagehero_ninja_fight</sprite>
+    <sprite>sprites\spr_sword_hitbox</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\back_orange</background>
@@ -20,6 +22,7 @@
     <object>objects\obj_hero</object>
     <object>objects\obj_enemy</object>
     <object>objects\obj_wall</object>
+    <object>objects\obj_sword_hitbox</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\room0</room>

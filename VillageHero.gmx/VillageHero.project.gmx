@@ -10,8 +10,10 @@
     <sprite>sprites\spr_wall_terrible</sprite>
     <sprite>sprites\spr_enemy</sprite>
     <sprite>sprites\spr_villagehero_ninja</sprite>
+    <sprite>sprites\spr_villagehero_flipped</sprite>
     <sprite>sprites\spr_villagehero_ninja_fight</sprite>
     <sprite>sprites\spr_sword_hitbox</sprite>
+    <sprite>sprites\spr_levelend_terrible</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\back_orange</background>
@@ -20,12 +22,16 @@
   <paths name="paths"/>
   <objects name="objects">
     <object>objects\obj_hero</object>
+    <object>objects\obj_hero2</object>
     <object>objects\obj_enemy</object>
     <object>objects\obj_wall</object>
     <object>objects\obj_sword_hitbox</object>
+    <object>objects\obj_level_end</object>
+    <object>objects\obj_control</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\room0</room>
+    <room>rooms\room1</room>
   </rooms>
   <help>
     <rtf>help.rtf</rtf>

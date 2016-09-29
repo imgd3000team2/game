@@ -26,13 +26,22 @@
           <argument>
             <kind>1</kind>
             <string>///Initialize Variables
+
+//movement
 grav = 1;
 hsp = 0;
 vsp = 0;
 jumpspeed = 14;
 movespeed = 4;
+xdirection = x+32;
+last_move = 0;
+
+//fighting
 fight_countdown = 5;
 fight_wait_time = 0;
+
+
+
 
 </string>
           </argument>
@@ -60,8 +69,6 @@ fight_wait_time = 0;
 key_right = keyboard_check(ord('D'));
 key_left = -keyboard_check(ord('A'));
 key_jump = keyboard_check_pressed(ord('W'));
-key_quit = keyboard_check_pressed(ord('Q'));
-key_restart = keyboard_check_pressed(ord('R'));
 key_fight = keyboard_check_pressed(ord('G'));
 key_fight2 = keyboard_check_pressed(ord('H')); 
 </string>
@@ -85,79 +92,155 @@ key_fight2 = keyboard_check_pressed(ord('H'));
           <argument>
             <kind>1</kind>
             <string>///React to inputs
-if(key_quit)
-game_end();
 
-if(key_restart)
-game_restart();
+if(last_move == 0)
+{
+    sprite_index = spr_villagehero_ninja;
+}
 
+//set sword direction
+if(key_left == -1)
+{
+xdirection = x-32;
+last_move = -1;
+}
+else
+{
+if(key_right == 1)
+{
+xdirection = x+32;
+last_move = 1;
+}
+}
+
+//determine move
 move = key_left + key_right;
 hsp = move * movespeed;
 if (vsp &lt; 20) vsp += grav;
  
-if (place_meeting(x,y+1,obj_wall) || place_meeting(x,y+1,obj_enemy))
+if (place_meeting(x,y+1,obj_wall) || place_meeting(x,y+1,obj_hero2))
 {
     vsp = key_jump * -jumpspeed
 }
 
 
-//Horizontal Collision
-if (place_meeting(x+hsp,y,obj_wall))
+//Horizontal collisions with wall and other player
+touchingwall = place_meeting(x+hsp,y,obj_wall);
+touchinghero2 = place_meeting(x+hsp,y,obj_hero2);
+if (touchingwall || touchinghero2)
+{
+if(touchingwall)
 {
     while(!place_meeting(x+sign(hsp),y,obj_wall))
     {
         x += sign(hsp);
     }
-    hsp = 0;
 }
-
-if (place_meeting(x+hsp,y,obj_enemy))
-{
-    while(!place_meeting(x+sign(hsp),y,obj_enemy))
+//else{  
+if(touchinghero2)
+{  
+    while(!place_meeting(x+sign(hsp),y,obj_hero2))
     {
         x += sign(hsp);
     }
-    hsp = 0;
 }
+    
+    hsp = 0;
+//}
+}
+
+
 x += hsp;
- 
-//Vertical Collision
-if (place_meeting(x,y+vsp,obj_wall))
+
+//collision with enemy
+if(collision_rectangle( x-32, y+32, x+32, y-32, obj_enemy, true, true ))
 {
+    instance_destroy(); // game over
+}
+
+
+
+//Vertical collsions with wall and other player
+touchingwall = place_meeting(x,y+vsp,obj_wall);
+touchinghero2 = place_meeting(x,y+vsp,obj_hero2);
+
+if (touchingwall|| touchinghero2)
+{
+if(touchingwall){
     while(!place_meeting(x,y+sign(vsp),obj_wall))
     {
         y += sign(vsp);
     }
-    vsp = 0;
-}
-
-if (place_meeting(x,y+vsp,obj_enemy))
-{
-    while(!place_meeting(x,y+sign(vsp),obj_enemy))
+    }
+//else
+if(touchinghero2){    
+    while(!place_meeting(x,y+sign(vsp),obj_hero2))
     {
         y += sign(vsp);
     }
+}
+    
     vsp = 0;
 }
 
 y += vsp;
 
+
+
 ///fighting
 if(key_fight &amp;&amp; (fight_wait_time == 0))
 {
-sprite_index = spr_villagehero_ninja_fight
-fight_wait_time = fight_countdown;
+    //left
+    if(last_move == -1)
+    {        
+        sprite_index = spr_villagehero_ninja_fight;
+    }
+    else 
+    {  //right
+    if(last_move == 1)
+    {
+        sprite_index = spr_villagehero_ninja_fight;
+    }
+    }
+       
+    if(last_move == 0)
+    {       
+       sprite_index = spr_villagehero_ninja_fight;
+    }
+    
+    
+    hitbox_inst_id = instance_create(xdirection, y, obj_sword_hitbox);
+    
+    hitbox_inst_id.follow_id = id;
+    
+    fight_wait_time = fight_countdown;
 }
 else
 {
+
 if(fight_wait_time &gt; 0)
 {
+//change sprite if possible
 fight_wait_time--;
+}
+
+//set sprite based on direction
 if(fight_wait_time == 0)
 {
-sprite_index = spr_villagehero_ninja;
+    //left
+    if(last_move == -1)
+    {
+        sprite_index = spr_villagehero_flipped;
+    }
+    else //right
+    {
+    if(last_move == 1)
+    {
+        sprite_index = spr_villagehero_ninja;
+    }
+    }
 }
-}
+
 }
 </string>
           </argument>

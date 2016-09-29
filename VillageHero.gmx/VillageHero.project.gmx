@@ -14,10 +14,21 @@
     <sprite>sprites\spr_villagehero_ninja_fight</sprite>
     <sprite>sprites\spr_sword_hitbox</sprite>
     <sprite>sprites\spr_levelend_terrible</sprite>
+    <sprite>sprites\background_burn</sprite>
+    <sprite>sprites\spr_cement</sprite>
+    <sprite>sprites\spr_grass</sprite>
+    <sprite>sprites\spr_house</sprite>
+    <sprite>sprites\spr_house3</sprite>
+    <sprite>sprites\sprite_dirt</sprite>
+    <sprite>sprites\spr_invisible</sprite>
+    <sprite>sprites\spr_diamond</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\back_orange</background>
     <background>background\back_night_rural</background>
+    <background>background\background_pink</background>
+    <background>background\bg_evening</background>
+    <background>background\bg_nightsky</background>
   </backgrounds>
   <paths name="paths"/>
   <objects name="objects">
@@ -28,10 +39,19 @@
     <object>objects\obj_sword_hitbox</object>
     <object>objects\obj_level_end</object>
     <object>objects\obj_control</object>
+    <object>objects\obj_house3</object>
+    <object>objects\obj_burninghouse</object>
+    <object>objects\obj_cement</object>
+    <object>objects\obj_dirt</object>
+    <object>objects\obj_grass</object>
+    <object>objects\obj_invisible</object>
+    <object>objects\obj_diamond</object>
+    <object>objects\obj_score</object>
   </objects>
   <rooms name="rooms">
+    <room>rooms\room2</room>
+    <room>rooms\room3</room>
     <room>rooms\room0</room>
-    <room>rooms\room1</room>
   </rooms>
   <help>
     <rtf>help.rtf</rtf>

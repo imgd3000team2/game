@@ -33,6 +33,7 @@
   <paths name="paths"/>
   <objects name="objects">
     <object>objects\obj_hero</object>
+    <object>objects\obj_hero1</object>
     <object>objects\obj_hero2</object>
     <object>objects\obj_enemy</object>
     <object>objects\obj_wall</object>

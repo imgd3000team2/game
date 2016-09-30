@@ -5,7 +5,7 @@
   <visible>-1</visible>
   <depth>0</depth>
   <persistent>0</persistent>
-  <parentName>&lt;undefined&gt;</parentName>
+  <parentName>obj_hero</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
     <event eventtype="0" enumb="0">
@@ -26,19 +26,10 @@
           <argument>
             <kind>1</kind>
             <string>///Initialize Variables
+event_inherited();
 
-//movement
-grav = 1;
-hsp = 0;
-vsp = 0;
-jumpspeed = 14;
-movespeed = 4;
-xdirection = x+32;
-last_move = 0;
 
-//fighting
-fight_countdown = 5;
-fight_wait_time = 0;
+
 
 </string>
           </argument>
@@ -62,178 +53,21 @@ fight_wait_time = 0;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Get the player's input
-key_right = keyboard_check(vk_right);
-key_left = -keyboard_check(vk_left);
-key_jump = keyboard_check(vk_up);
-key_fight = keyboard_check(vk_delete);
-key_fight = keyboard_check(vk_numpad0);
-key_fight2 = keyboard_check(vk_decimal); 
-</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>///React to inputs
+            <string>///Get the input and run parents version
+obj_hero.key_right = keyboard_check(vk_right);
+obj_hero.key_left = -keyboard_check(vk_left);
+obj_hero.key_jump = keyboard_check(vk_up);
+obj_hero.key_fight = keyboard_check(vk_enter);
+obj_hero.key_fight2 = keyboard_check(vk_numpad0);
 
-if(last_move == 0)
-{
-    sprite_index = spr_Hero_placeholder;
-}
+//set sprites
+obj_hero.sprite_move_right = spr_Hero_placeholder;
+obj_hero.sprite_move_left = spr_Hero_placeholder;
+obj_hero.sprite_fight_right = spr_villagehero_ninja_fight;
+obj_hero.sprite_fight_left = spr_villagehero_ninja_fight;
 
-//set sword direction
-if(key_left == -1)
-{
-xdirection = x-32;
-last_move = -1;
-}
-else
-{
-if(key_right == 1)
-{
-xdirection = x+32;
-last_move = 1;
-}
-}
-
-//determine move
-move = key_left + key_right;
-hsp = move * movespeed;
-if (vsp &lt; 20) vsp += grav;
- 
-if (place_meeting(x,y+1,obj_wall) || place_meeting(x,y+1,obj_hero))
-{
-    vsp = key_jump * -jumpspeed
-}
-
-
-//Horizontal collisions with wall and other player
-touchingwall = place_meeting(x+hsp,y,obj_wall);
-touchinghero2 = place_meeting(x+hsp,y,obj_hero);
-if (touchingwall || touchinghero2)
-{
-if(touchingwall)
-{
-    while(!place_meeting(x+sign(hsp),y,obj_wall))
-    {
-        x += sign(hsp);
-    }
-}
-//else{  
-if(touchinghero2)
-{  
-    while(!place_meeting(x+sign(hsp),y,obj_hero))
-    {
-        x += sign(hsp);
-    }
-}
-    
-    hsp = 0;
-//}
-}
-
-
-x += hsp;
-
-//collision with enemy
-if(collision_rectangle( x-32, y+32, x+32, y-32, obj_enemy, true, true ))
-{
-    instance_destroy(); // game over
-}
-
-
-
-//Vertical collsions with wall and other player
-touchingwall = place_meeting(x,y+vsp,obj_wall);
-touchinghero2 = place_meeting(x,y+vsp,obj_hero);
-
-if (touchingwall|| touchinghero2)
-{
-if(touchingwall){
-    while(!place_meeting(x,y+sign(vsp),obj_wall))
-    {
-        y += sign(vsp);
-    }
-    }
-//else
-if(touchinghero2){    
-    while(!place_meeting(x,y+sign(vsp),obj_hero))
-    {
-        y += sign(vsp);
-    }
-}
-    
-    vsp = 0;
-}
-
-y += vsp;
-
-
-
-///fighting
-if(key_fight &amp;&amp; (fight_wait_time == 0))
-{
-    //left
-    if(last_move == -1)
-    {        
-        sprite_index = spr_villagehero_ninja_fight;
-    }
-    else 
-    {  //right
-    if((last_move == 1) || (last_move == 0))
-    {
-        sprite_index = spr_villagehero_ninja_fight;
-    }
-    }    
-    
-    hitbox_inst_id = instance_create(xdirection, y, obj_sword_hitbox);
-    
-    hitbox_inst_id.follow_id = id;
-    
-    fight_wait_time = fight_countdown;
-}
-else
-{
-
-if(fight_wait_time &gt; 0)
-{
-//change sprite if possible
-fight_wait_time--;
-}
-
-//set sprite based on direction
-if(fight_wait_time == 0)
-{
-    //left
-    if(last_move == -1)
-    {
-        sprite_index = spr_Hero_placeholder;
-    }
-    else //right
-    {
-    if(last_move == 1)
-    {
-        sprite_index = spr_Hero_placeholder;
-    }
-    }
-}
-
-}
+//run parent's code
+event_inherited();
 </string>
           </argument>
         </arguments>

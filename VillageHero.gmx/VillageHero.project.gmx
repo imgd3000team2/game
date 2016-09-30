@@ -4,7 +4,9 @@
     <Config>Configs\Default</Config>
   </Configs>
   <NewExtensions/>
-  <sounds name="sound"/>
+  <sounds name="sound">
+    <sound>sound\music_02</sound>
+  </sounds>
   <sprites name="sprites">
     <sprite>sprites\spr_Hero_placeholder</sprite>
     <sprite>sprites\spr_wall_terrible</sprite>
@@ -22,6 +24,15 @@
     <sprite>sprites\sprite_dirt</sprite>
     <sprite>sprites\spr_invisible</sprite>
     <sprite>sprites\spr_diamond</sprite>
+    <sprite>sprites\spr_ninja_run_right</sprite>
+    <sprite>sprites\spr_ninja_standing_right</sprite>
+    <sprite>sprites\spr_ninja_standing_left</sprite>
+    <sprite>sprites\spr_ninja_run_left</sprite>
+    <sprite>sprites\spr_ninja_fight_right</sprite>
+    <sprite>sprites\spr_ninja_fight_left</sprite>
+    <sprite>sprites\spr_enemy_move_right</sprite>
+    <sprite>sprites\spr_enemy_move_left</sprite>
+    <sprite>sprites\sprite23</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\back_orange</background>
@@ -29,8 +40,12 @@
     <background>background\background_pink</background>
     <background>background\bg_evening</background>
     <background>background\bg_nightsky</background>
+    <background>background\bg_sky</background>
   </backgrounds>
   <paths name="paths"/>
+  <fonts name="fonts">
+    <font>fonts\font_arial_32</font>
+  </fonts>
   <objects name="objects">
     <object>objects\obj_hero</object>
     <object>objects\obj_hero1</object>
@@ -39,6 +54,7 @@
     <object>objects\obj_wall</object>
     <object>objects\obj_sword_hitbox</object>
     <object>objects\obj_level_end</object>
+    <object>objects\obj_game_end</object>
     <object>objects\obj_control</object>
     <object>objects\obj_house3</object>
     <object>objects\obj_burninghouse</object>
@@ -48,6 +64,7 @@
     <object>objects\obj_invisible</object>
     <object>objects\obj_diamond</object>
     <object>objects\obj_score</object>
+    <object>objects\obj_wintext</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\room2</room>

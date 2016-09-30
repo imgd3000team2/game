@@ -83,7 +83,11 @@ if(key_escape)
 game_restart();
 
 if(!heroes_alive || key_restart)
+{
+
 room_restart();
+//audio_pause_sound(music_02);
+}
 </string>
           </argument>
         </arguments>

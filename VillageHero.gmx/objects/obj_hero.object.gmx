@@ -34,7 +34,7 @@ vsp = 0;
 jumpspeed = 14;
 movespeed = 4;
 xdirection = x+32;
-last_move = 0;
+facing_direction = 1; //right
 
 //fighting
 fight_countdown = 5;
@@ -49,7 +49,7 @@ key_fight2 = 0;
 
 obj_control.heroes_alive++;
 
-
+sprite_wait_time = 0;
 
 </string>
           </argument>
@@ -75,19 +75,26 @@ obj_control.heroes_alive++;
             <kind>1</kind>
             <string>///React to inputs, apply physics, detect collisions
 
-//set sword direction
+
+///Key presses, set hero movement and facing direction
+last_facing_direction = facing_direction;
+
+//left
 if(key_left == -1)
 {
 xdirection = x-32;
-last_move = -1;
+facing_direction = -1; 
 }
-else
+else //right
 {
 if(key_right == 1)
 {
 xdirection = x+32;
-last_move = 1;
+facing_direction = 1;
 }
+
+//no change to facing direction.
+
 }
 
 //determine horizontal move
@@ -96,10 +103,10 @@ move = key_left + key_right;
 //check jumping
 hsp = move * movespeed;
 if (vsp &lt; 20) vsp += grav;
- 
+
 if (place_meeting(x,y+1,obj_wall) || place_meeting(x,y+1,obj_hero))
 {
-    vsp = key_jump * -jumpspeed
+vsp = key_jump * -jumpspeed
 }
 
 //Horizontal collisions with wall and other heroes
@@ -109,36 +116,24 @@ if (touchingwall || touchinghero)
 {
 if(touchingwall)
 {
-    while(!place_meeting(x+sign(hsp),y,obj_wall))
-    {
-        x += sign(hsp);
-    }
+while(!place_meeting(x+sign(hsp),y,obj_wall))
+{
+x += sign(hsp);
 }
- 
+}
+
 if(touchinghero)
 {  
-    while(!place_meeting(x+sign(hsp),y,obj_hero))
-    {
-        x += sign(hsp);
-    }
+while(!place_meeting(x+sign(hsp),y,obj_hero))
+{
+x += sign(hsp);
 }
-    
-    hsp = 0;
+}
+
+hsp = 0;
 }
 
 x += hsp;
-
-//collision with enemy
-if(collision_rectangle( x-24, y+24, x+24, y-24, obj_enemy, true, true ))
-{
-    instance_destroy();    
-    
-    obj_control.heroes_alive--;
-    dfdf = instance_number(obj_hero);
-
-}
-
-
 
 //Vertical collsions with wall and other heroes
 touchingwall = place_meeting(x,y+vsp,obj_wall);
@@ -147,79 +142,113 @@ touchinghero = place_meeting(x,y+vsp,obj_hero);
 if (touchingwall|| touchinghero)
 {
 if(touchingwall){
-    while(!place_meeting(x,y+sign(vsp),obj_wall))
-    {
-        y += sign(vsp);
-    }
-    }
+while(!place_meeting(x,y+sign(vsp),obj_wall))
+{
+y += sign(vsp);
+}
+}
 
 if(touchinghero){    
-    while(!place_meeting(x,y+sign(vsp),obj_hero))
-    {
-        y += sign(vsp);
-    }
+while(!place_meeting(x,y+sign(vsp),obj_hero))
+{
+y += sign(vsp);
 }
-    
-    vsp = 0;
+}
+
+vsp = 0;
 }
 
 y += vsp;
 
+//collision with enemy
+if(collision_rectangle( x-24, y+24, x+24, y-24, obj_enemy, true, true ))
+{
+instance_destroy();    
 
+obj_control.heroes_alive--;
+
+}
+
+//deincrement sprite_wait_time
+if(sprite_wait_time &gt; 0)
+{
+sprite_wait_time--;
+}
 
 ///fighting
-if(key_fight &amp;&amp; (fight_wait_time == 0))
-{
-    //left
-    if(last_move == -1)
-    {     
-        sprite_index = sprite_fight_left;
-    }
-    else 
-    {  //right
-    if((last_move == 1) || (last_move == 0))
-    {        
-        sprite_index = sprite_fight_right;
-    }
-    }    
-    
-    hitbox_inst_id = instance_create(xdirection, y, obj_sword_hitbox);
-    
-    hitbox_inst_id.follow_id = id;
-    
-    fight_wait_time = fight_countdown;
-}
-else
-{
-
 if(fight_wait_time &gt; 0)
 {
-//change sprite if possible
 fight_wait_time--;
 }
 
-//set sprite based on direction
-if(fight_wait_time == 0)
+if(key_fight &amp;&amp; (fight_wait_time == 0))
 {
-    //left
-    if(last_move == -1)
-    {        
-        sprite_index = sprite_move_left;
-    }
-    else //right
-    {
-    if(last_move == 1)
-    {        
-        sprite_index = sprite_move_right;
-    }
-    else
-    {
-       sprite_index = sprite_move_right;
-    }
-    }
+sprite_wait_time = 7;    //7 frames for attack
+
+//left
+if(facing_direction == -1)
+{     
+sprite_index = sprite_fight_left;
+}
+else 
+{  //right
+if(facing_direction == 1)
+{        
+sprite_index = sprite_fight_right;
+}
+}    
+
+hitbox_inst_id = instance_create(xdirection, y, obj_sword_hitbox);
+
+hitbox_inst_id.follow_id = id;
+
+fight_wait_time = fight_countdown;
+}
+else
+{
+//If we are no longer fighting, change sprite if it is time to do so.
+if((fight_wait_time == 0))
+{
+if(sprite_wait_time == 0)
+{
+//left
+if(key_left == -1)
+{   
+if(sprite_index != sprite_move_left){   
+sprite_index = sprite_move_left;
+sprite_wait_time = 9;
+}
+}
+else 
+{   //right
+if(key_right == 1)
+{   
+if(sprite_index != sprite_move_right)
+{
+sprite_index = sprite_move_right; 
+sprite_wait_time = 9;       
+}
+}
+else
+{
+if((facing_direction == -1) &amp;&amp;(sprite_index != sprite_standing_left))
+{
+sprite_index = sprite_standing_left;
+}
+else
+{
+if((facing_direction == 1)&amp;&amp;(sprite_index != sprite_standing_right))
+{
+sprite_index = sprite_standing_right;
+} 
+}
+}
+}   
+}
+}
 }
 
-}
+
 </string>
           </argument>
         </arguments>

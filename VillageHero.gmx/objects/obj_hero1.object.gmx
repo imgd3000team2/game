@@ -30,7 +30,6 @@ event_inherited();
 
 
 
-
 </string>
           </argument>
         </arguments>
@@ -74,6 +73,8 @@ obj_hero.sprite_fight_left = spr_ninja_fight_left;
 
 //run parent's code
 event_inherited();
+
+
 </string>
           </argument>
         </arguments>

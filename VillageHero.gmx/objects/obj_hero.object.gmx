@@ -73,7 +73,12 @@ sprite_wait_time = 0;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///React to inputs, apply physics, detect collisions
+            <string>if(place_meeting(x, y, obj_sword_hitbox_enemy))
+{
+    instance_destroy();
+}
+
+///React to inputs, apply physics, detect collisions
 
 
 ///Key presses, set hero movement and facing direction

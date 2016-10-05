@@ -26,6 +26,11 @@
           <argument>
             <kind>1</kind>
             <string>///Initialize Variables
+
+//destroy if single player
+if(global.numheroes == 1)
+instance_destroy();
+else
 event_inherited();
 
 
@@ -61,6 +66,8 @@ obj_hero.key_fight = keyboard_check(vk_enter);
 obj_hero.key_fight2 = keyboard_check(vk_numpad0);
 
 //set sprites
+obj_hero.sprite_standing_right = spr_Hero_placeholder;
+obj_hero.sprite_standing_left = spr_Hero_placeholder;
 obj_hero.sprite_move_right = spr_Hero_placeholder;
 obj_hero.sprite_move_left = spr_Hero_placeholder;
 obj_hero.sprite_fight_right = spr_villagehero_ninja_fight;

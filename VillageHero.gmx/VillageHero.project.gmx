@@ -32,10 +32,10 @@
     <sprite>sprites\spr_ninja_fight_left</sprite>
     <sprite>sprites\spr_enemy_move_right</sprite>
     <sprite>sprites\spr_enemy_move_left</sprite>
-    <sprite>sprites\sprite23</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\back_orange</background>
+    <background>background\back_orange_start</background>
     <background>background\back_night_rural</background>
     <background>background\background_pink</background>
     <background>background\bg_evening</background>
@@ -45,17 +45,21 @@
   <paths name="paths"/>
   <fonts name="fonts">
     <font>fonts\font_arial_32</font>
+    <font>fonts\font_arial_20</font>
   </fonts>
   <objects name="objects">
     <object>objects\obj_hero</object>
     <object>objects\obj_hero1</object>
     <object>objects\obj_hero2</object>
     <object>objects\obj_enemy</object>
+    <object>objects\obj_boss</object>
     <object>objects\obj_wall</object>
     <object>objects\obj_sword_hitbox</object>
+    <object>objects\obj_sword_hitbox_enemy</object>
     <object>objects\obj_level_end</object>
-    <object>objects\obj_game_end</object>
     <object>objects\obj_control</object>
+    <object>objects\obj_control_start</object>
+    <object>objects\obj_control_splash</object>
     <object>objects\obj_house3</object>
     <object>objects\obj_burninghouse</object>
     <object>objects\obj_cement</object>
@@ -67,9 +71,13 @@
     <object>objects\obj_wintext</object>
   </objects>
   <rooms name="rooms">
-    <room>rooms\room2</room>
-    <room>rooms\room3</room>
-    <room>rooms\room0</room>
+    <room>rooms\room_start</room>
+    <room>rooms\room_housefire</room>
+    <room>rooms\room_splash1</room>
+    <room>rooms\room_sunset__japan</room>
+    <room>rooms\room_splash2</room>
+    <room>rooms\room_midnight_sky</room>
+    <room>rooms\room_splash3</room>
   </rooms>
   <help>
     <rtf>help.rtf</rtf>

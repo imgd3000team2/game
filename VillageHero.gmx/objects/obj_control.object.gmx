@@ -79,8 +79,9 @@ key_escape = keyboard_check(vk_escape);
 if(key_quit)
 game_end();
 
+//escape brings you to the start screen
 if(key_escape)
-game_restart();
+if room_exists(room_start) room_goto(room_start);
 
 if(!heroes_alive || key_restart)
 {

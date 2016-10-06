@@ -32,6 +32,7 @@
     <sprite>sprites\spr_ninja_fight_left</sprite>
     <sprite>sprites\spr_enemy_move_right</sprite>
     <sprite>sprites\spr_enemy_move_left</sprite>
+    <sprite>sprites\spr_cloud</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\back_orange</background>
@@ -69,14 +70,15 @@
     <object>objects\obj_diamond</object>
     <object>objects\obj_score</object>
     <object>objects\obj_wintext</object>
+    <object>objects\obj_cloud</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\room_start</room>
-    <room>rooms\room_housefire</room>
-    <room>rooms\room_splash1</room>
-    <room>rooms\room_sunset__japan</room>
-    <room>rooms\room_splash2</room>
     <room>rooms\room_midnight_sky</room>
+    <room>rooms\room_splash1</room>
+    <room>rooms\room_housefire</room>
+    <room>rooms\room_splash2</room>
+    <room>rooms\room_sunset_japan</room>
     <room>rooms\room_splash3</room>
   </rooms>
   <help>

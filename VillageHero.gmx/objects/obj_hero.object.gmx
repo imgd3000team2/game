@@ -73,15 +73,11 @@ sprite_wait_time = 0;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if(place_meeting(x, y, obj_sword_hitbox_enemy))
-{
-    instance_destroy();
-}
-
+            <string>
 ///React to inputs, apply physics, detect collisions
 
 
-///Key presses, set hero movement and facing direction
+//Key presses, set hero movement and facing direction
 last_facing_direction = facing_direction;
 
 //left
@@ -99,7 +95,6 @@ facing_direction = 1;
 }
 
 //no change to facing direction.
-
 }
 
 //determine horizontal move
@@ -165,11 +160,13 @@ vsp = 0;
 
 y += vsp;
 
-//collision with enemy
-if(collision_rectangle( x-24, y+24, x+24, y-24, obj_enemy, true, true ))
+//collision with enemy or outside room
+offscreen = (x &lt; 0 || x &gt; room_width || y &lt; 0 || y &gt; room_height)
+if(collision_rectangle( x-24, y+24, x+24, y-24, obj_enemy, true, true ) || offscreen)
 {
 instance_destroy();    
-
+var inst = instance_create(x, y, obj_dead);
+inst.sprite_index = sprite_dead;
 obj_control.heroes_alive--;
 
 }
@@ -188,7 +185,7 @@ fight_wait_time--;
 
 if(key_fight &amp;&amp; (fight_wait_time == 0))
 {
-sprite_wait_time = 7;    //7 frames for attack
+sprite_wait_time = 7;    //6-7 frames for attack
 
 //left
 if(facing_direction == -1)

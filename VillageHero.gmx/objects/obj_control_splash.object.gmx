@@ -52,7 +52,7 @@
             <string>///Read keys
 key_quit = keyboard_check(ord('Q'));
 key_continue = keyboard_check(vk_space);
-
+key_escape = keyboard_check(vk_escape);
 
 </string>
           </argument>
@@ -86,7 +86,9 @@ if(key_continue)
    if room_exists(room_start) room_goto(room_start);  
 }
 
-
+//escape brings you to the start screen
+if(key_escape)
+if room_exists(room_start) room_goto(room_start);
 
 </string>
           </argument>
@@ -112,40 +114,48 @@ if(key_continue)
             <kind>1</kind>
             <string>///Draw score
 
-draw_set_colour(c_blue);
-draw_set_font(font_arial_32);
 str_room_number = string(global.level_number);
 str_last_score = string(global.last_score);
+str_last_time = string(global.last_time/30); //convert to seconds
 
-draw_text(200, 200, "Room " + str_room_number + " - Score: " + str_last_score);
-draw_text(200, 250, "Total Score: " + string(global.total_score));
+str_total_score = string(global.total_score); 
+
+str_total_time = string(global.total_time/30);       //convert to seconds
+draw_set_colour(c_blue);
+draw_set_font(font_arial_32);
+
+draw_text(200, 150, "Room\#|Score|Time");
+
+draw_text(200, 200, str_room_number + "         |    " + str_last_score+ "    |  " + str_last_time + "s");
+draw_text(200, 250, "All" + "       |    " + str_total_score + "    |  "+ str_total_time + "s");
+
 
 
 //show previous room scores
 if(global.level_number &gt;= 2)
 {
 draw_set_font(font_arial_20);
-draw_text(200, 300, "Room 1 - Score: " + string(global.level1_score));
+draw_text(200, 350, "1 " + " | " + string(global.level1_score) + " | " + string(global.level1_time/30)+ "s");
 }
 
 if(global.level_number &gt;= 3)
 {
-   draw_text(200, 340, "Room 2 - Score: " + string(global.level2_score));
+   draw_text(200, 390, "2 " + " | " + string(global.level2_score) + " | " + string(global.level2_time/30)+ "s");
 }
 
 if(global.level_number &gt;= 4)
 {
-   draw_text(200, 365, "Room 3 - Score: " + string(global.level3_score));
+   draw_text(200, 430, "3 " + " | " + string(global.level3_score) + " | " + string(global.level3_time/30)+ "s");
 }
 
 if(global.level_number &gt;= 5)
 {
-   draw_text(200, 410, "Room 4 - Score: " + string(global.level4_score));
+   draw_text(200, 470, "4 " + " | " + string(global.level4_score) + " | " + string(global.level4_time/30)+ "s");
 }
 
 //instructions to resume
 draw_set_font(font_arial_32);
-draw_text(200, 460, "Press 'Space' to continue");
+draw_text(200, 470, "Press 'SPACE' to continue");
 </string>
           </argument>
         </arguments>

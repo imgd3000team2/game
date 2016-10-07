@@ -8,14 +8,14 @@
     <sound>sound\music_02</sound>
   </sounds>
   <sprites name="sprites">
-    <sprite>sprites\spr_Hero_placeholder</sprite>
-    <sprite>sprites\spr_wall_terrible</sprite>
-    <sprite>sprites\spr_enemy</sprite>
+    <sprite>sprites\spr_hero_placeholder</sprite>
+    <sprite>sprites\spr_wall_placeholder</sprite>
+    <sprite>sprites\spr_enemy_placeholder</sprite>
     <sprite>sprites\spr_villagehero_ninja</sprite>
     <sprite>sprites\spr_villagehero_flipped</sprite>
-    <sprite>sprites\spr_villagehero_ninja_fight</sprite>
+    <sprite>sprites\spr_fight_placeholder</sprite>
     <sprite>sprites\spr_sword_hitbox</sprite>
-    <sprite>sprites\spr_levelend_terrible</sprite>
+    <sprite>sprites\spr_levelend_placeholder</sprite>
     <sprite>sprites\background_burn</sprite>
     <sprite>sprites\spr_cement</sprite>
     <sprite>sprites\spr_grass</sprite>
@@ -30,9 +30,23 @@
     <sprite>sprites\spr_ninja_run_left</sprite>
     <sprite>sprites\spr_ninja_fight_right</sprite>
     <sprite>sprites\spr_ninja_fight_left</sprite>
-    <sprite>sprites\spr_enemy_move_right</sprite>
-    <sprite>sprites\spr_enemy_move_left</sprite>
+    <sprite>sprites\spr_enemy_run_right_alpha</sprite>
+    <sprite>sprites\spr_enemy_run_left_alpha</sprite>
     <sprite>sprites\spr_cloud</sprite>
+    <sprite>sprites\spr_level_end_final</sprite>
+    <sprite>sprites\spr_fighter_run_right</sprite>
+    <sprite>sprites\spr_fighter_run_left</sprite>
+    <sprite>sprites\spr_fighter_standing_right</sprite>
+    <sprite>sprites\spr_fighter_standing_left</sprite>
+    <sprite>sprites\spr_fighter_fight_right</sprite>
+    <sprite>sprites\spr_fighter_fight_left</sprite>
+    <sprite>sprites\spr_enemy_run_right</sprite>
+    <sprite>sprites\spr_enemy_standing_right</sprite>
+    <sprite>sprites\spr_enemy_run_left</sprite>
+    <sprite>sprites\spr_enemy_standing_left</sprite>
+    <sprite>sprites\spr_ninja_dead</sprite>
+    <sprite>sprites\spr_fighter_dead</sprite>
+    <sprite>sprites\spr_enemy_dead</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\back_orange</background>
@@ -42,21 +56,22 @@
     <background>background\bg_evening</background>
     <background>background\bg_nightsky</background>
     <background>background\bg_sky</background>
+    <background>background\back_start</background>
   </backgrounds>
   <paths name="paths"/>
   <fonts name="fonts">
     <font>fonts\font_arial_32</font>
+    <font>fonts\font_arial_32_bold</font>
     <font>fonts\font_arial_20</font>
+    <font>fonts\font3</font>
   </fonts>
   <objects name="objects">
     <object>objects\obj_hero</object>
     <object>objects\obj_hero1</object>
     <object>objects\obj_hero2</object>
     <object>objects\obj_enemy</object>
-    <object>objects\obj_boss</object>
     <object>objects\obj_wall</object>
     <object>objects\obj_sword_hitbox</object>
-    <object>objects\obj_sword_hitbox_enemy</object>
     <object>objects\obj_level_end</object>
     <object>objects\obj_control</object>
     <object>objects\obj_control_start</object>
@@ -71,6 +86,7 @@
     <object>objects\obj_score</object>
     <object>objects\obj_wintext</object>
     <object>objects\obj_cloud</object>
+    <object>objects\obj_dead</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\room_start</room>

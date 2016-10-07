@@ -27,6 +27,8 @@
             <kind>1</kind>
             <string>//initialize variables
 heroes_alive = 0;
+
+global.last_time = 0;
 </string>
           </argument>
         </arguments>
@@ -49,11 +51,13 @@ heroes_alive = 0;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Read keys
+            <string>///Read keys, increment time
 key_quit = keyboard_check_pressed(ord('Q'));
 key_restart = keyboard_check_pressed(ord('R'));
 key_escape = keyboard_check(vk_escape);
 
+
+global.last_time += 1;
 
 </string>
           </argument>

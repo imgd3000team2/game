@@ -62,14 +62,11 @@ obj_hero.key_fight2 = keyboard_check_pressed(ord('H'));
 //set sprites
 obj_hero.sprite_standing_right = spr_ninja_standing_right;
 obj_hero.sprite_standing_left = spr_ninja_standing_left;
-//obj_hero.sprite_standing_right = spr_villagehero_ninja;
-//obj_hero.sprite_standing_left = spr_villagehero_flipped;
 obj_hero.sprite_move_right = spr_ninja_run_right;
 obj_hero.sprite_move_left = spr_ninja_run_left;
-//obj_hero.sprite_move_right = spr_villagehero_ninja;
-//obj_hero.sprite_move_left = spr_villagehero_flipped;
 obj_hero.sprite_fight_right = spr_ninja_fight_right;
 obj_hero.sprite_fight_left = spr_ninja_fight_left;
+obj_hero.sprite_dead = spr_ninja_dead;
 
 //run parent's code
 event_inherited();
